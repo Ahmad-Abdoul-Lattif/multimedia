@@ -1,13 +1,18 @@
-import { Component } from '@angular/core';
+import { Component,inject  } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { ArtifactService } from '../../services/artifact.service';
 
 @Component({
   selector: 'app-about',
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: './about.html',
   styleUrl: './about.css'
 })
 export class About {
+
+  // ✅ Injection du service
+  private artifactService = inject(ArtifactService);
 
   features = [
     {
@@ -49,11 +54,26 @@ export class About {
     { name: 'CSS3', description: 'Animations et design responsive' }
   ];
 
-  stats = [
-    { value: '100+', label: 'Artefacts' },
-    { value: '4', label: 'Catégories' },
-    { value: '24/7', label: 'Accessible' },
-    { value: '3D', label: 'Visualisation' }
-  ];
+  // ✅ STATS DYNAMIQUES
+  get stats() {
+    return [
+      { 
+        value: this.artifactService.getArtifacts().length.toString(),
+        label: 'Artefacts' 
+      },
+      { 
+        value: this.artifactService.getCategories().length.toString(),
+        label: 'Catégories' 
+      },
+      { 
+        value: '24/7', 
+        label: 'Accessible' 
+      },
+      { 
+        value: '3D', 
+        label: 'Visualisation' 
+      }
+    ];
+  }
 
 }
