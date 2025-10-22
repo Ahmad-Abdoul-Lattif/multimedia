@@ -1,0 +1,155 @@
+<!-- src/app/components/gallery/gallery.html -->
+
+<div class="gallery-container">
+  <!-- Header -->
+  <header class="gallery-header">
+    <div class="header-content">
+      <h1 class="page-title">Collection du Musée</h1>
+      <p class="page-subtitle">
+        Explorez {{ displayedArtifacts().length }} artefacts de notre collection
+      </p>
+    </div>
+  </header>
+
+  <!-- Filters & Search -->
+  <section class="filters-section">
+    <div class="filters-wrapper">
+      <!-- Search Bar -->
+      <div class="search-container">
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input 
+          type="text" 
+          class="search-input"
+          placeholder="Rechercher un artefact, artiste, période..."
+          [ngModel]="searchQuery()"
+          (ngModelChange)="onSearchChange($event)"
+        />
+      </div>
+
+      <!-- Category Filter -->
+      <div class="category-filter">
+        <button 
+          class="filter-btn"
+          [class.active]="selectedCategory() === 'all'"
+          (click)="onCategoryChange('all')"
+        >
+          Tout
+        </button>
+        <button 
+          *ngFor="let category of categories"
+          class="filter-btn"
+          [class.active]="selectedCategory() === category.id"
+          (click)="onCategoryChange(category.id)"
+          [style.--filter-color]="category.color"
+        >
+          {{ category.icon }} {{ category.name }}
+        </button>
+      </div>
+
+      <!-- View Toggle -->
+      <div class="view-toggle">
+        <button 
+          class="toggle-btn"
+          [class.active]="viewMode() === 'grid'"
+          (click)="viewMode() !== 'grid' && toggleViewMode()"
+          title="Vue grille"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+          </svg>
+        </button>
+        <button 
+          class="toggle-btn"
+          [class.active]="viewMode() === 'list'"
+          (click)="viewMode() !== 'list' && toggleViewMode()"
+          title="Vue liste"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="8" y1="6" x2="21" y2="6"/>
+            <line x1="8" y1="12" x2="21" y2="12"/>
+            <line x1="8" y1="18" x2="21" y2="18"/>
+            <line x1="3" y1="6" x2="3.01" y2="6"/>
+            <line x1="3" y1="12" x2="3.01" y2="12"/>
+            <line x1="3" y1="18" x2="3.01" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Grid/List -->
+  <section class="gallery-content">
+    <div 
+      class="artifacts-container"
+      [class.grid-view]="viewMode() === 'grid'"
+      [class.list-view]="viewMode() === 'list'"
+    >
+      <div 
+        *ngFor="let artifact of displayedArtifacts(); trackBy: trackById"
+        class="artifact-card"
+        (click)="navigateToArtifact(artifact.id)"
+      >
+        <div class="artifact-image">
+          <img [src]="artifact.thumbnail" [alt]="artifact.title" loading="lazy">
+          <div class="artifact-overlay">
+            <div class="overlay-content">
+              <span class="view-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+                Voir en 3D
+              </span>
+            </div>
+          </div>
+          <span 
+            class="category-badge"
+            [style.background-color]="getCategoryColor(artifact.category)"
+          >
+            {{ getCategoryName(artifact.category) }}
+          </span>
+        </div>
+
+        <div class="artifact-info">
+          <h3 class="artifact-title">{{ artifact.title }}</h3>
+          <p class="artifact-artist">{{ artifact.artist }}</p>
+          <div class="artifact-meta">
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              {{ artifact.period }}
+            </span>
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              {{ artifact.year }}
+            </span>
+          </div>
+          <p class="artifact-description">{{ artifact.description }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="displayedArtifacts().length === 0" class="empty-state">
+      <div class="empty-icon">🔍</div>
+      <h3>Aucun résultat trouvé</h3>
+      <p>Essayez de modifier vos critères de recherche</p>
+      <button class="reset-btn" (click)="onCategoryChange('all'); onSearchChange('')">
+        Réinitialiser les filtres
+      </button>
+    </div>
+  </section>
+</div>

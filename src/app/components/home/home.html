@@ -1,0 +1,113 @@
+<!-- src/app/components/home/home.html -->
+
+<div class="home-container">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title animate-fade-in">
+        Musée Virtuel Interactif
+      </h1>
+      <p class="hero-subtitle animate-fade-in-delay">
+        Explorez l'art, l'histoire et la culture en 3D immersif
+      </p>
+      <button class="cta-button animate-fade-in-delay-2" (click)="navigateToGallery()">
+        <span>Commencer l'exploration</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+    <div class="scroll-indicator">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="categories-section">
+    <div class="section-header">
+      <h2 class="section-title">Découvrez nos collections</h2>
+      <p class="section-description">
+        Plongez dans différentes époques et cultures à travers nos collections thématiques
+      </p>
+    </div>
+
+    <div class="categories-grid">
+      <div 
+        *ngFor="let category of categories" 
+        class="category-card"
+        (click)="navigateToGallery(category.id)"
+        [style.--category-color]="category.color"
+      >
+        <div class="category-icon">{{ category.icon }}</div>
+        <h3 class="category-name">{{ category.name }}</h3>
+        <p class="category-description">{{ category.description }}</p>
+        <div class="category-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Artifacts Section -->
+  <section class="featured-section">
+    <div class="section-header">
+      <h2 class="section-title">Œuvres à la une</h2>
+      <p class="section-description">
+        Découvrez une sélection d'artefacts exceptionnels de notre collection
+      </p>
+    </div>
+
+    <div class="featured-grid">
+      <div 
+        *ngFor="let artifact of featuredArtifacts" 
+        class="featured-card"
+        (click)="navigateToArtifact(artifact.id)"
+      >
+        <div class="featured-image">
+          <img [src]="artifact.thumbnail" [alt]="artifact.title" loading="lazy">
+          <div class="featured-overlay">
+            <span class="view-3d">Voir en 3D</span>
+          </div>
+        </div>
+        <div class="featured-content">
+          <span class="featured-category" [style.color]="getCategoryColor(artifact.category)">
+            {{ artifact.category }}
+          </span>
+          <h3 class="featured-title">{{ artifact.title }}</h3>
+          <p class="featured-artist">{{ artifact.artist }}</p>
+          <p class="featured-period">{{ artifact.period }} • {{ artifact.year }}</p>
+        </div>
+      </div>
+    </div>
+
+    <button class="view-all-button" (click)="navigateToGallery()">
+      Voir toute la collection
+    </button>
+  </section>
+
+  <!-- Info Section -->
+  <section class="info-section">
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-icon">🎯</div>
+        <h3>Expérience Immersive</h3>
+        <p>Découvrez chaque œuvre en 3D avec des modèles haute résolution</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">📱</div>
+        <h3>Accessible Partout</h3>
+        <p>Visitez le musée depuis n'importe quel appareil, à tout moment</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">🎓</div>
+        <h3>Contenu Éducatif</h3>
+        <p>Apprenez l'histoire et le contexte de chaque artefact</p>
+      </div>
+    </div>
+  </section>
+</div>
