@@ -313,7 +313,7 @@ export class ArtifactService {
   description: 'Magnifique cristal de quartz transparent formé dans une géode au cours de millions d\'années. Le quartz est le deuxième minéral le plus abondant dans la croûte terrestre. Sa structure hexagonale parfaite en fait un spécimen prisé des collectionneurs et scientifiques.',
   category: 'science',
   sketchfabId: '80a2f60700ac4593955392cac20b9415',
-  thumbnail: 'https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?w=400',
+  thumbnail: 'https://cdn.pixabay.com/photo/2020/01/10/09/55/quartz-4754923_1280.jpg',
   year: '10-50 millions d\'années',
   dimensions: '25-40 cm de hauteur',
   materials: 'Dioxyde de silicium (SiO₂)',
