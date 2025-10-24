@@ -237,18 +237,20 @@ export class ArtifactService {
 },
 {
   id: '14',
-  title: 'Cerveau Humain Anatomique',
-  artist: 'Modèle médical',
-  period: 'Anatomie Moderne',
-  description: 'Modèle anatomique détaillé du cerveau humain montrant toutes les structures cérébrales. Outil essentiel pour l\'enseignement médical.',
+  title: 'Météorite de Fer',
+  artist: 'Espace',
+  period: 'Formation du Système Solaire',
+  description: 'Fragment de météorite ferreuse tombé sur Terre. Composée principalement de fer et de nickel, cette météorite provient probablement du noyau d\'un ancien astéroïde désintégré. Les motifs de Widmanstätten visibles à la surface sont caractéristiques des météorites métalliques.',
   category: 'science',
-  sketchfabId: 'e073c2590bc24daaa7323f4daa5b7784',
-  thumbnail: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=400',
-  year: 'Contemporain',
+  sketchfabId: '224d67850e064d7180f1f2b7871a5dd9', // Cherche "meteorite iron" sur Sketchfab
+  thumbnail: 'https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=400',
+  year: '4,5 milliards d\'années',
+  dimensions: '15-30 cm',
+  materials: 'Fer, nickel, traces de cobalt',
   highlights: [
-    'Organe le plus complexe',
-    'Centre du système nerveux',
-    'Outil pédagogique médical'
+    'Vestige de la formation du système solaire',
+    'Motifs de Widmanstätten uniques',
+    'Composition métallique rare sur Terre'
   ]
 },
 {
@@ -305,21 +307,23 @@ export class ArtifactService {
 },
 {
   id: '19',
-  title: 'Cœur Humain Anatomique',
-  artist: 'Modèle médical',
-  period: 'Anatomie Cardiovasculaire',
-  description: 'Modèle anatomique du cœur humain montrant les quatre cavités, les valves cardiaques et les principaux vaisseaux sanguins. Le cœur pompe environ 7 000 litres de sang par jour.',
+  title: 'Cristal de Quartz Géant',
+  artist: 'Nature',
+  period: 'Formation Géologique',
+  description: 'Magnifique cristal de quartz transparent formé dans une géode au cours de millions d\'années. Le quartz est le deuxième minéral le plus abondant dans la croûte terrestre. Sa structure hexagonale parfaite en fait un spécimen prisé des collectionneurs et scientifiques.',
   category: 'science',
-  sketchfabId: 'a70c0c47fe4b4bbfabfc8f445365d5a4',
-  thumbnail: 'https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?w=400',
-  year: 'Contemporain',
-  dimensions: '300 g de poids',
+  sketchfabId: '80a2f60700ac4593955392cac20b9415',
+  thumbnail: 'https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?w=400',
+  year: '10-50 millions d\'années',
+  dimensions: '25-40 cm de hauteur',
+  materials: 'Dioxyde de silicium (SiO₂)',
   highlights: [
-    'Pompe vitale du corps',
-    'Bat 100 000 fois par jour',
-    'Centre du système circulatoire'
+    'Structure cristalline hexagonale parfaite',
+    'Transparence exceptionnelle',
+    'Formation en environnement géothermique'
   ]
 },
+
     
   ]);
 
